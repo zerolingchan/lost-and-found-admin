@@ -6,6 +6,7 @@ import store from './store'
 // 引入element-ui
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/scss/element-variables.scss'
 
 Vue.use(ElementUI);
 
@@ -18,14 +19,13 @@ store.dispatch('loadUser')
 
 router.beforeEach((to, from, next) => {
   console.log('to -> ', to)
-  if (to.name === 'home') {
+  console.log('login state ', store.state.isLogin)
+  if (to.fullPath !== '/login' && store.state.isLogin === false) {
     // 未登陆跳转
-    if (store.state.isLogin === false) {
-      console.log('login state ', store.state.isLogin)
-      next('/login')
-    }
+    next('/login')
+  }else{
+    next()
   }
-  next()
 })
 
 new Vue({
