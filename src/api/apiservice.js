@@ -4,13 +4,7 @@ import qs from 'qs'
 // axios.defaults.baseURL = '/local'
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.withCredentials = true
-
-if (process.env.NODE_ENV === "development") {
-  axios.defaults.baseURL = '/dev'
-  // axios.defaults.baseURL = 'http://198.13.50.56'
-} else {
-  axios.defaults.baseURL = 'http://198.13.50.56'
-}
+axios.defaults.baseURL = '/api'
 
 function apiUnpack(promise) {
   /** 封装请求，如果http status 为200，则解析code是否200，是则数据正常，否则返回reject
