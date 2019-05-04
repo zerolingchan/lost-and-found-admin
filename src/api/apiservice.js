@@ -34,22 +34,22 @@ const ApiService = {
         nickname: nickname
       })))
     },
+
+    /** 获得所有用户 */
+    get_users(page=1, per_page=20) {
+      return apiUnpack(axios.get('/user/', {params: {page: page, per_page: per_page}}))
+    },
+
+    /** 删除用户 */
+    delete_user(id) {
+      return apiUnpack(axios.delete('/user/' + id))
+    }
   },
 
   post: {
-    /** 获取失物招领文章 */
+    /** 获取文章 */
     get_posts(type, page = 1, per_page = 20) {
       return apiUnpack(axios.get('/post', {params: {page: page, per_page: per_page, type: type}}))
-    },
-
-    /** 获取寻物启事文章 */
-    get_found_post(page = 1, per_page = 20) {
-      return apiUnpack(axios.get('/post', {params: {page: page, per_page: per_page, type: 'found'}}))
-    },
-
-    /** 获取寻人启事文章 */
-    get_people_post(page = 1, per_page = 20) {
-      return apiUnpack(axios.get('/post', {params: {page: page, per_page: per_page, type: 'people'}}))
     },
 
     /** 获取某文章 */

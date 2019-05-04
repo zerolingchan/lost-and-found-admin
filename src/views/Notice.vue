@@ -10,7 +10,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deletcNotice(scope.$index)">删除</el-button>
+          <el-button size="mini" type="danger" @click="deletcNotice(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -80,15 +80,13 @@ export default {
           console.log(error);
         })
     },
-    deletcNotice(index) {
-      ApiService.notice.delete_notice(index)
+    deletcNotice(index, row) {
+      ApiService.notice.delete_notice(row.id)
       .then(data => {
-        console.log(data)
         this.tableData.splice(index, 1)
         this.$message.success('删除成功')
       })
       .catch(error => {
-        console.log(error)
         this.$message.error('删除失败')
       })
     },

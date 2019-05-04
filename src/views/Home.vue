@@ -3,16 +3,18 @@
         <el-aside class="aside" width="200px">
             <el-menu background-color="coral"
       text-color="white"
-      active-text-color="#ffd04b" default-active="1" @select="handleSelect">
-              <el-menu-item index="1">公告管理</el-menu-item>
-              <el-menu-item index="2">失物招领管理</el-menu-item>
-              <el-menu-item index="3">寻物启事管理</el-menu-item>
-              <el-menu-item index="4">寻人启事管理</el-menu-item>
-              <el-menu-item index="5">用户管理</el-menu-item>
+      active-text-color="#ffd04b" :default-active="active" @select="handleSelect">
+              <el-menu-item :index="route_index_map.notice">公告管理</el-menu-item>
+              <el-menu-item :index="route_index_map.lost">失物招领管理</el-menu-item>
+              <el-menu-item :index="route_index_map.found">寻物启事管理</el-menu-item>
+              <el-menu-item :index="route_index_map.people">寻人启事管理</el-menu-item>
+              <el-menu-item :index="route_index_map.user">用户管理</el-menu-item>
             </el-menu>
         </el-aside>
         <el-main>
-            <router-view></router-view>
+            <el-card>
+                <router-view></router-view>
+            </el-card>
         </el-main>
     </el-container>
 </template>
@@ -23,13 +25,30 @@ export default {
     name: 'home',
     data () {
         return {
-            active: 1
+            route_index_map: {
+                notice: "1",
+                lost:   "2",
+                found:  "3",
+                people: "4",
+                user:   "5"
+            }
         }
     },
     computed: {
         ...mapState({
             isLogin: 'isLogin'
-        })
+        }),
+        active() {
+            // 计算当前活动的菜单子项
+            let path = this.$route.path
+            let sub_path = path.split('/').pop()
+            let active = this.route_index_map[sub_path]
+            if (!active) {
+                return "1"
+            } else {
+                return active
+            }
+        }
     },
     methods: {
         handleSelect(key, keyPath) {
@@ -37,18 +56,20 @@ export default {
                 this.active = key
             }
             switch(key) {
-                case '1':
-                    this.$router.push('/notice')
+                case this.route_index_map.notice:
+                    this.$router.push({name: 'notice'})
                     break
-                case '2':
+                case this.route_index_map.lost:
                     this.$router.push({name: 'post', params: {type: 'lost'}})
                     break
-                case '3':
+                case this.route_index_map.found:
                     this.$router.push({name: 'post', params: {type: 'found'}})
                     break
-                case '4':
+                case this.route_index_map.people:
                     this.$router.push({name: 'post', params: {type: 'people'}})
                     break
+                case this.route_index_map.user:
+                    this.$router.push({name: 'user'})
             }
         }
     }
