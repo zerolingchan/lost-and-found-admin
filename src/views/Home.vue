@@ -36,12 +36,18 @@ export default {
             if (key !== this.active) {
                 this.active = key
             }
-            console.log(key, keyPath)
-            console.log(typeof key)
             switch(key) {
                 case '1':
                     this.$router.push('/notice')
-                    console.log('pushed')
+                    break
+                case '2':
+                    this.$router.push({name: 'post', params: {type: 'lost'}})
+                    break
+                case '3':
+                    this.$router.push({name: 'post', params: {type: 'found'}})
+                    break
+                case '4':
+                    this.$router.push({name: 'post', params: {type: 'people'}})
                     break
             }
         }

@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Notice from './views/Notice.vue'
+import Post from './views/Post.vue'
+import PostDetail from './views/PostDetail.vue'
 
 Vue.use(Router)
 
@@ -21,8 +23,18 @@ const router = new Router({
           path: '/notice',
           name: 'notice',
           component: Notice
+        },
+        {
+          path: '/post/:type',
+          name: 'post',
+          component: Post,
         }
       ]
+    },
+    {
+      path: '/post/:id',
+      name: 'postDetail',
+      component: PostDetail,
     },
     {
       path: '/login',

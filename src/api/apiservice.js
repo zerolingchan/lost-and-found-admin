@@ -38,8 +38,8 @@ const ApiService = {
 
   post: {
     /** 获取失物招领文章 */
-    get_lost_post(page = 1, per_page = 20) {
-      return apiUnpack(axios.get('/post', {params: {page: page, per_page: per_page, type: 'lost'}}))
+    get_posts(type, page = 1, per_page = 20) {
+      return apiUnpack(axios.get('/post', {params: {page: page, per_page: per_page, type: type}}))
     },
 
     /** 获取寻物启事文章 */
