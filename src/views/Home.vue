@@ -31,26 +31,30 @@ export default {
                 found:  "3",
                 people: "4",
                 user:   "5"
-            }
+            },
+            active: "1"
         }
+    },
+    mounted () {
+        this.computed_active()
     },
     computed: {
         ...mapState({
             isLogin: 'isLogin'
         }),
-        active() {
-            // 计算当前活动的菜单子项
+    },
+    methods: {
+        /** 计算当前活跃的菜单项 */
+        computed_active() {
             let path = this.$route.path
             let sub_path = path.split('/').pop()
             let active = this.route_index_map[sub_path]
             if (!active) {
-                return "1"
+                this.active = "1"
             } else {
-                return active
+                this.active = active
             }
-        }
-    },
-    methods: {
+        },
         handleSelect(key, keyPath) {
             if (key !== this.active) {
                 this.active = key

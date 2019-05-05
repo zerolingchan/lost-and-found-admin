@@ -36,6 +36,11 @@
         <div class="divider"></div>
 
         <el-card>{{ post.content }}</el-card>
+
+        <div v-if="hasImg">
+          <div class="divider"></div>
+          <el-image :src='post.image'></el-image>
+        </div>
       </el-card>
     </el-col>
   </el-row>
@@ -55,6 +60,11 @@ export default {
       },
       post: {}
     };
+  },
+  computed: {
+    hasImg () {
+      return this.post && this.post.image !== null && this.post.image.length > 0
+    }
   },
   mounted() {
       this.get_post()

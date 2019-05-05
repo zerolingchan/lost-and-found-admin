@@ -38,7 +38,7 @@ const router = new Router({
       ]
     },
     {
-      path: '/post/:id',
+      path: '/post/detail/:id',
       name: 'postDetail',
       component: PostDetail,
     },
