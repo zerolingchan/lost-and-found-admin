@@ -124,7 +124,7 @@ export default {
       })
       .catch(error => {
         console.error(error)
-        this.$message.success('修改失败')
+        this.$message.error('修改失败')
       })
       .then(() => {
         this.dialog.visible = false

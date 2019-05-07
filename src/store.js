@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 
-import {UPDATE_USER, USER} from './field'
+import {UPDATE_USER, USER, LOGOUT} from './field'
 
 
 export default new Vuex.Store({
@@ -18,6 +18,12 @@ export default new Vuex.Store({
       state.user = user
       localStorage.setItem(USER, JSON.stringify(user))
       state.isLogin = true
+    },
+    [LOGOUT] (state) {
+      state.isLogin = false
+      state.user = {}
+      localStorage.removeItem(USER)
+      console.log('退出登陆')
     }
   },
   actions: {
