@@ -103,11 +103,11 @@ export default {
             "YYYY-MM-DD HH:mm:ss"
           );
         this.tableData.unshift(data)
-        this.$message.success('修改成功')
+        this.$message.success('发布成功')
       })
       .catch(error => {
         console.error(error)
-        this.$message.error('修改失败')
+        this.$message.error('发布失败')
       })
       .then(() => {
         this.dialog.visible = false
@@ -131,7 +131,8 @@ export default {
       })
     },
     handleCommit(form) {
-      if (this.currentEdit !== -1) {
+      console.log('currentEdit -> ', this.dialog.currentEdit)
+      if (this.dialog.currentEdit !== -1) {
         this.put_notice(form)
       } else {
         this.post_notice(form)
