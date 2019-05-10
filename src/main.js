@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
   console.log('to -> ', to)
   console.log('login state ', store.state.isLogin)
   if (to.fullPath !== '/login' && store.state.isLogin === false) {
-    // 未登陆跳转
+    // 未登录跳转
     next('/login')
   }else{
     next()

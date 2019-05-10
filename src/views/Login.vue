@@ -10,7 +10,7 @@
               <el-input type="password" v-model="loginModel.password" placeholder="请输入密码"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="login()">登陆</el-button>
+                <el-button type="primary" @click="login()">登录</el-button>
             </el-form-item>
           </el-form>
         </el-card>
@@ -39,7 +39,7 @@ export default {
           .then(data => {
               console.log('data ->', data)
               this.$store.commit(UPDATE_USER, data)
-              this.$message.success('登陆成功')
+              this.$message.success('登录成功')
               this.$router.push({name: 'home'})
           })
           .catch(error => {

@@ -81,15 +81,24 @@ export default {
         })
     },
     deletcNotice(index, row) {
-      ApiService.notice.delete_notice(row.id)
-      .then(data => {
-        this.tableData.splice(index, 1)
-        this.$message.success('删除成功')
-      })
-      .catch(error => {
-        this.$message.error('删除失败')
-      })
+      this.$confirm('确定要删除吗？ ', '提示', {
+        onfirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => { // 向请求服务端删除
+        ApiService.notice.delete_notice(row.id)
+                .then(data => {
+                  this.tableData.splice(index, 1)
+                  this.$message.success('删除成功')
+                })
+                .catch(error => {
+                  this.$message.error('删除失败')
+                })
+      }).catch(() => {
+        this.$message.info('已取消删除!');
+      });
     },
+
     createNotice () {
       this.notice = {title: '', content: ''}
       this.dialog.currentEdit = -1

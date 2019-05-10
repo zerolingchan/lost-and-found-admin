@@ -31,7 +31,7 @@ axios.interceptors.response.use( response => {
         */ 
         store.commit(LOGOUT);
         // 在这里使用Element-UI组件Message无效
-        Message.error('请重新登陆')
+        Message.error('请重新登录')
         router.replace({
           name: 'login',
         })
@@ -43,7 +43,7 @@ axios.interceptors.response.use( response => {
 
 const ApiService = {
   user: {
-    /** 登陆 */
+    /** 登录 */
     login(login, password, role = 'admin') {
       return axios.post('/user/login', qs.stringify({login: login, password: password, role: role}))
     },

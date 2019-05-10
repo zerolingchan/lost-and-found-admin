@@ -23,7 +23,7 @@ export default new Vuex.Store({
       state.isLogin = false
       state.user = {}
       localStorage.removeItem(USER)
-      console.log('退出登陆')
+      console.log('退出登录')
     }
   },
   actions: {
