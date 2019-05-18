@@ -66,6 +66,11 @@ const ApiService = {
     /** 删除用户 */
     delete_user(id) {
       return axios.delete('/user/' + id)
+    },
+
+    /** 修改账号密码*/
+    change(old_password, new_password=''){
+      return axios.post('/user/password/change', {old_password: old_password, new_password: new_password})
     }
   },
 

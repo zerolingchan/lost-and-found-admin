@@ -6,6 +6,7 @@ import User from './views/User.vue'
 import Notice from './views/Notice.vue'
 import Post from './views/Post.vue'
 import PostDetail from './views/PostDetail.vue'
+import Password from './views/Password.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ const router = new Router({
           name: 'user',
           component: User,
         },
+        {
+          path: '/password',
+          name: 'password',
+          component: Password
+         }
       ]
     },
     {
@@ -46,7 +52,7 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
   ]
 })
 

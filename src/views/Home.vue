@@ -9,6 +9,7 @@
               <el-menu-item :index="route_index_map.found">寻物启事管理</el-menu-item>
               <el-menu-item :index="route_index_map.people">寻人启事管理</el-menu-item>
               <el-menu-item :index="route_index_map.user">用户管理</el-menu-item>
+              <el-menu-item :index="route_index_map.password">修改账号密码</el-menu-item>
             </el-menu>
         </el-aside>
         <el-main>
@@ -30,7 +31,8 @@ export default {
                 lost:   "2",
                 found:  "3",
                 people: "4",
-                user:   "5"
+                user:   "5",
+                password:"6"
             },
             active: "1"
         }
@@ -74,6 +76,9 @@ export default {
                     break
                 case this.route_index_map.user:
                     this.$router.push({name: 'user'})
+                    break
+                case this.route_index_map.password:
+                    this.$router.push({name: 'password'})
             }
         }
     }
