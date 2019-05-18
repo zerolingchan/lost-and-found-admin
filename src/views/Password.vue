@@ -11,7 +11,7 @@
            <span>{{passwordCheckValidate.errorText}}</span>
         </el-form-item>
         <div>
-            <el-button @click="passwordFormVisible = false">取 消</el-button>
+            <el-button @click="cancel()">取 消</el-button>
             <el-button type="primary" @click="changePass()">保 存</el-button>
         </div>
       </el-form>
@@ -21,6 +21,7 @@
     import ApiService from "@/api/apiservice"
     export default {
         name: "password",
+        inject:['reload'],
         data() {
             return {
                 password: {
@@ -55,12 +56,16 @@
                     .then(data=>{
                         console.log('data ->', data)
                         this.$message.success('修改成功')
+                        this.reload()
                     })
                     .catch(error=>{
                         console.error(error)
                         this.$message.error('修改失败')
                     })
             },
+            cancel(){
+                this.reload()
+            }
     },
     }
 </script>
